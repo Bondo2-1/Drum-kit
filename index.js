@@ -14,6 +14,7 @@ function playSound(key) {
   if (soundFile) {
     const audio = new Audio(soundFile);
     audio.play();
+    animation(key);
   }
 }
 
@@ -24,7 +25,7 @@ function setupClickEvents() {
   drumButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const key = button.innerHTML;
-      playSound(key);
+      playSound(key);   
     });
   });
 }
@@ -35,6 +36,15 @@ function setupKeyboardEvents() {
     playSound(event.key);
   });
 }
+
+function animation(key) {
+    var btnAnimation = document.querySelector("." + key);
+    btnAnimation.classList.add("pressed");
+    setTimeout(function() {
+        btnAnimation.classList.remove("pressed");
+    }, 100);
+}
+
 
 // Initialize all events when DOM is ready
 function initDrumKit() {
